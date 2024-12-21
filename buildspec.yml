@@ -1,4 +1,5 @@
 phases:
   build:
     commands:
-      - docker build -t $ImageName -f C:\server\buildspec.yml .
+      - docker build -t $ImageName -f ./Dockerfile .
+
