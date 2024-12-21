@@ -1,4 +1,7 @@
 phases:
+  pre_build:
+    commands:
+      - export ImageName=simple-docker-service
   build:
     commands:
       - docker build -t $ImageName -f ./Dockerfile .
