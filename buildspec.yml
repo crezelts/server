@@ -1,4 +1,22 @@
+version: 0.2
+
 phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 471112814535.dkr.ecr.ap-northeast-2.amazonaws.com
+
   build:
     commands:
-      - docker build -t $ImageName -f ./Dockerfile .
+      - echo Building the Docker image...
+      - docker build -t $ImageName -f $CODEBUILD_SRC_DIR/Dockerfile $CODEBUILD_SRC_DIR
+
+  post_build:
+    commands:
+      - echo Tagging and pushing the Docker image...
+      - docker tag $ImageName:latest 471112814535.dkr.ecr.ap-northeast-2.amazonaws.com/$ImageName:latest
+      - docker push 471112814535.dkr.ecr.ap-northeast-2.amazonaws.com/$ImageName:latest
+
+environment_variables:
+  plaintext:
+    ImageName: simple-docker-service
