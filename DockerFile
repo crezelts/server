@@ -17,4 +17,4 @@ RUN . venv/bin/activate && pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 # 애플리케이션 실행 명령어
-CMD ["venv/bin/python", "teramo.py"]
+CMD ["venv\Scripts\activate", "teramo.py"]
