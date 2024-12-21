@@ -1,4 +1,4 @@
 phases:
   build:
     commands:
-      - docker build -t $ImageName -f ./Dockerfile .
+      - docker build -t $ImageName -f ./DockerFile .
