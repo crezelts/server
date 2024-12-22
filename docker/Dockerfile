@@ -10,10 +10,10 @@ COPY requirements.txt /app/
 # 가상환경 생성
 RUN python -m venv venv
 
-RUN python -m spacy download en_core_web_sm
-
-# 가상환경을 활성화한 후 패키지 설치
-RUN . venv/bin/activate && pip install --no-cache-dir -r requirements.txt
+# 가상환경을 활성화한 후, 패키지 설치 및 spacy 모델 다운로드
+RUN . venv/bin/activate && \
+    pip install --no-cache-dir -r requirements.txt && \
+    python -m spacy download en_core_web_sm
 
 # 애플리케이션 코드 복사
 COPY . /app/
