@@ -9,3 +9,7 @@ phases:
     files:
       - appspec.yml
       - scripts/**/*
+  post_build:
+    commands:
+      - echo "Build and deployment completed."
+      - echo "Find your application URL in the output above."
