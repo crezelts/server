@@ -1,0 +1,13 @@
+version: 0.0
+resources:
+  - target:
+      - name: ecs:service
+        identifier: test-cluster-teramo-1/test-teramo-24
+        type: ecs
+  - task-definition:
+      - name: "teramo-function-task"
+        family: "teramo-function-task-1"
+        revision: 1
+  - s3:
+      - bucket: "s3://test-good/appspec.yaml"
+        key: "app.zip"
